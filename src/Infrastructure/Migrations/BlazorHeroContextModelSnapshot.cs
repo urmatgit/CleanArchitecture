@@ -16,7 +16,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Application.Models.Chat.ChatHistory<BlazorHero.CleanArchitecture.Infrastructure.Models.Identity.BlazorHeroUser>", b =>
@@ -80,6 +80,39 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Catalog.Interest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PictureDataUrl")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Interests");
+                });
+
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Catalog.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -122,6 +155,41 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.HasIndex("BrandId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Catalog.UserInterest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("InterestId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte>("Level")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InterestId");
+
+                    b.ToTable("UserInterests");
                 });
 
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes.DocumentExtendedAttribute", b =>
@@ -583,6 +651,17 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                     b.Navigation("Brand");
                 });
 
+            modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Catalog.UserInterest", b =>
+                {
+                    b.HasOne("BlazorHero.CleanArchitecture.Domain.Entities.Catalog.Interest", "Interest")
+                        .WithMany("UserInterests")
+                        .HasForeignKey("InterestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Interest");
+                });
+
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes.DocumentExtendedAttribute", b =>
                 {
                     b.HasOne("BlazorHero.CleanArchitecture.Domain.Entities.Misc.Document", "Entity")
@@ -656,6 +735,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Catalog.Interest", b =>
+                {
+                    b.Navigation("UserInterests");
                 });
 
             modelBuilder.Entity("BlazorHero.CleanArchitecture.Domain.Entities.Misc.Document", b =>
