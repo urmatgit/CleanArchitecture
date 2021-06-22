@@ -85,5 +85,16 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
             //dispose unmanaged resources
             disposed = true;
         }
+        /// <summary>
+        ///  new value
+        /// </summary>
+        /// <param name="value">new value</param>
+        /// <returns>return old value </returns>
+        public bool AutoDetectChangesEnabled(bool value)
+        {
+            var oldValue = _dbContext.ChangeTracker.AutoDetectChangesEnabled;
+            _dbContext.ChangeTracker.AutoDetectChangesEnabled = value;
+            return oldValue;
+        }
     }
 }

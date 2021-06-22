@@ -86,6 +86,20 @@
             </MudNavLink>
         }
     }
+    @if (_canViewInterests)
+    {
+    <MudListSubheader Class="mt-2 mb-n2">@_localizer["Interest Management"]</MudListSubheader>
+    <MudNavLink Href="/catalog/interests" Icon="@Icons.Material.Outlined.CallToAction">
+        @_localizer["Interests"]
+    </MudNavLink>
+    }
+    @if (_canFillData)
+    {
+    <MudListSubheader Class="mt-2 mb-n2">@_localizer["Fill Management"]</MudListSubheader>
+    <MudNavLink Href="/catalog/filldata" Icon="@Icons.Material.Outlined.CallToAction">
+        @_localizer["Fill data"]
+    </MudNavLink>
+    }
 </MudNavMenu>
 
 @code {
@@ -101,6 +115,9 @@
     private bool _canViewChat;
     private bool _canViewProducts;
     private bool _canViewBrands;
+    private bool _canViewInterests;
+    private bool _canViewUserInterests;
+    private bool _canFillData;
 
     protected override async Task OnParametersSetAsync()
     {
@@ -115,5 +132,7 @@
         _canViewChat = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Communication.Chat)).Succeeded;
         _canViewProducts = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Products.View)).Succeeded;
         _canViewBrands = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Brands.View)).Succeeded;
+        _canViewInterests = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Interests.View)).Succeeded;
+        _canFillData = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Fill.Do)).Succeeded;
     }
 }

@@ -23,6 +23,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         [Parameter] public int UserCount { get; set; }
         [Parameter] public int RoleCount { get; set; }
 
+        [Parameter] public int InterestCount { get; set; }
+
         private readonly string[] _dataEnterBarChartXAxisLabels = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
         private readonly List<ChartSeries> _dataEnterBarChartSeries = new();
         private bool _loaded;
@@ -54,6 +56,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
                 DocumentExtendedAttributeCount = response.Data.DocumentExtendedAttributeCount;
                 UserCount = response.Data.UserCount;
                 RoleCount = response.Data.RoleCount;
+                InterestCount = response.Data.InterestCount;
                 foreach (var item in response.Data.DataEnterBarChart)
                 {
                     _dataEnterBarChartSeries
