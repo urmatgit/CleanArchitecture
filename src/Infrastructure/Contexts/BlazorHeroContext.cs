@@ -32,6 +32,9 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<DocumentType> DocumentTypes { get; set; }
         public DbSet<DocumentExtendedAttribute> DocumentExtendedAttributes { get; set; }
 
+        public DbSet<UserInterest> UserInterests { get; set; }
+        public DbSet<Interest> Interests { get; set; }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
             foreach (var entry in ChangeTracker.Entries<IAuditableEntity>().ToList())

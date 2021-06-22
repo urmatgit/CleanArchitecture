@@ -16,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Repositories
         Task<List<T>> GetPagedResponseAsync(int pageNumber, int pageSize);
 
         Task<T> AddAsync(T entity);
+        Task AddRangeAsync(List<T> entities);
 
         Task UpdateAsync(T entity);
 

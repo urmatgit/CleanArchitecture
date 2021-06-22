@@ -111,6 +111,17 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Export = "Permissions.AuditTrails.Export";
             public const string Search = "Permissions.AuditTrails.Search";
         }
+        public static class Interests
+        {
+            public const string View = "Permissions.Interests.View";
+            public const string Create = "Permissions.Interests.Create";
+            public const string Edit = "Permissions.Interests.Edit";
+            public const string Delete = "Permissions.Interests.Delete";
+        }
+        public static class Fill
+        {
+            public const string Do = "Permissions.Fill.Do";
+        }
        /// <summary>
        /// Returns a list of Permissions.
        /// </summary>

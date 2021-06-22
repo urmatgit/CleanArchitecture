@@ -1,0 +1,29 @@
+﻿@page "/catalog/filldata"
+@inject Microsoft.Extensions.Localization.IStringLocalizer<Interests> _localizer
+<div style="max-width: 600px;">
+    <EditForm Model="@doCommand" OnValidSubmit="DoAsync">
+        <FluentValidationValidator @ref="_fluentValidationValidator" />
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText Typo="Typo.h6">Fill data for test</MudText>
+                </CardHeaderContent>
+                <CardHeaderActions>
+                    <MudIconButton Icon="@Icons.Material.Filled.TableView" Color="Color.Default" />
+                </CardHeaderActions>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudTextField For="@(() => doCommand.BrandCount)" @bind-Value="doCommand.BrandCount" Label="@_localizer["A brand count"]" />
+                <MudTextField For="@(() => doCommand.ProductInBrandCound)" @bind-Value="doCommand.ProductInBrandCound" Label="@_localizer["Products in the brand count"]" />
+                <MudProgressLinear Color="Color.Primary" Indeterminate="@(StartingFill)" Class="my-7" />
+            </MudCardContent>
+            <MudCardActions>
+
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!Validated)" ButtonType="ButtonType.Submit" Class="ml-auto">@_localizer["Start"]</MudButton>
+            </MudCardActions>
+        </MudCard>
+    </EditForm>
+
+</div>
+
+
