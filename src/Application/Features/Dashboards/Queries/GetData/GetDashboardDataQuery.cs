@@ -44,7 +44,8 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
                 DocumentTypeCount = await _unitOfWork.Repository<DocumentType>().Entities.CountAsync(cancellationToken),
                 DocumentExtendedAttributeCount = await _unitOfWork.Repository<DocumentExtendedAttribute>().Entities.CountAsync(cancellationToken),
                 UserCount = await _userService.GetCountAsync(),
-                RoleCount = await _roleService.GetCountAsync()
+                RoleCount = await _roleService.GetCountAsync(),
+                InterestCount = await _unitOfWork.Repository<Interest>().Entities.CountAsync(cancellationToken)
             };
 
             var selectedYear = DateTime.Now.Year;
@@ -53,6 +54,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
             double[] documentsFigure = new double[13];
             double[] documentTypesFigure = new double[13];
             double[] documentExtendedAttributesFigure = new double[13];
+            double[] interestsFigure = new double[13];
             for (int i = 1; i <= 12; i++)
             {
                 var month = i;
@@ -64,6 +66,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
                 documentsFigure[i - 1] = await _unitOfWork.Repository<Document>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
                 documentTypesFigure[i - 1] = await _unitOfWork.Repository<DocumentType>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
                 documentExtendedAttributesFigure[i - 1] = await _unitOfWork.Repository<DocumentExtendedAttribute>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
+                interestsFigure[i - 1] = await _unitOfWork.Repository<Interest>().Entities.Where(x => x.CreatedOn >= filterStartDate && x.CreatedOn <= filterEndDate).CountAsync(cancellationToken);
             }
 
             response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Products"], Data = productsFigure });
@@ -71,6 +74,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Dashboards.Queries.G
             response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Documents"], Data = documentsFigure });
             response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Document Types"], Data = documentTypesFigure });
             response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Document Extended Attributes"], Data = documentExtendedAttributesFigure });
+            response.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Interests"], Data = interestsFigure });
 
             return await Result<DashboardDataResponse>.SuccessAsync(response);
         }

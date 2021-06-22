@@ -1,4 +1,5 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
 using BlazorHero.CleanArchitecture.Infrastructure.Contexts;
 using BlazorHero.CleanArchitecture.Infrastructure.Helpers;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -42,8 +44,55 @@ namespace BlazorHero.CleanArchitecture.Infrastructure
             AddAdministrator();
             AddBasicUser();
             _db.SaveChanges();
+            AddInterests();
+            _db.SaveChanges();
+            AddUserInterests();
+            _db.SaveChanges();
         }
 
+        private void AddUserInterests()
+        {
+            Task.Run(async () =>
+            {
+                if (!_db.UserInterests.Any())
+                {
+                    var user = await _userManager.FindByEmailAsync("mukesh@blazorhero.com");
+                    var interests = _db.Interests.Take(2);
+
+                    if (user != null && interests?.Count() > 0)
+                    {
+                        foreach (Interest interest in interests)
+                        {
+                            var userInterest = new UserInterest { UserId = user.Id, InterestId = interest.Id };
+                            _db.UserInterests.Add(userInterest);
+                        }
+
+                    }
+                }
+            }).GetAwaiter().GetResult();
+        }
+        private void AddInterests()
+        {
+            Task.Run(async () =>
+            {
+                if (!_db.Interests.Any())
+                {
+                    var interests = new List<Interest>
+                {
+                    new Interest { Name = "Volleyball" },
+                    new Interest { Name = "Basketball" },
+                    new Interest { Name = "Football" },
+                    new Interest { Name = "Tennis" },
+                    new Interest { Name = "Picnic" },
+                };
+
+                    await _db.Interests.AddRangeAsync(interests);
+                }
+
+
+
+            }).GetAwaiter().GetResult();
+        }
         private void AddAdministrator()
         {
             Task.Run(async () =>

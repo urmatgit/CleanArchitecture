@@ -30,6 +30,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Extensions
                 .AddTransient<IBrandRepository, BrandRepository>()
                 .AddTransient<IDocumentRepository, DocumentRepository>()
                 .AddTransient<IDocumentTypeRepository, DocumentTypeRepository>()
+                .AddTransient<IInterestRepository, InterestRepostitory>()
+                .AddTransient<IUserInterestRepository, UserInterestRepository>()
                 .AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
         }
 
