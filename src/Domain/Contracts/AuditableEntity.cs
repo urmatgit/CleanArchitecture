@@ -10,4 +10,12 @@ namespace BlazorHero.CleanArchitecture.Domain.Contracts
         public string LastModifiedBy { get; set; }
         public DateTime? LastModifiedOn { get; set; }
     }
+    public abstract class AuditableEntity : IAuditableEntity
+    {
+        
+        public string CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public string LastModifiedBy { get; set; }
+        public DateTime? LastModifiedOn { get; set; }
+    }
 }

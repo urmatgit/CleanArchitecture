@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
 {
-    public partial class initInterest : Migration
+    public partial class InitInterest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -32,7 +32,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     InterestId = table.Column<int>(type: "int", nullable: false),
                     Level = table.Column<byte>(type: "tinyint", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -42,7 +42,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserInterests", x => x.Id);
+                    table.PrimaryKey("PK_UserInterests", x => new { x.Id, x.UserId, x.InterestId });
                     table.ForeignKey(
                         name: "FK_UserInterests_Interests_InterestId",
                         column: x => x.InterestId,
