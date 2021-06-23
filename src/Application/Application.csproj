@@ -28,7 +28,13 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
+
     <Folder Include="Features\GameTypes\" />
+
+    <Folder Include="Features\UserInterests\Commands\AddEdit\" />
+    <Folder Include="Features\UserInterests\Commands\Delete\" />
+    <Folder Include="Features\UserInterests\Queries\GetAll\" />
+
     <Folder Include="Features\UserInterests\Queries\GetAllByUser\" />
   </ItemGroup>
 
