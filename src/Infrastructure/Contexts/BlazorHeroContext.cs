@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BlazorHero.CleanArchitecture.Domain.Entities.ExtendedAttributes;
 using BlazorHero.CleanArchitecture.Domain.Entities.Misc;
+using BlazorHero.CleanArchitecture.Infrastructure.Configurations;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
 {
@@ -70,6 +71,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
             {
                 property.SetColumnType("decimal(18,2)");
             }
+            builder.ApplyConfiguration(new UserInterestConfiguration());
             base.OnModelCreating(builder);
             builder.Entity<ChatHistory<BlazorHeroUser>>(entity =>
             {

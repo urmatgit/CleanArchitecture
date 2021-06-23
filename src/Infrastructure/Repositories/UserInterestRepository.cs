@@ -27,6 +27,14 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
 
         }
 
+        public async Task<UserInterest> GetUserInterest(string userid, int interestid)
+        {
+            return await _repository.Entities
+                .Include(i => i.Interest)
+                .Where(i => i.UserId == userid && i.InterestId == interestid)
+                .FirstOrDefaultAsync();
+        }
+
         public async Task<bool> IsInterestUsed(int interestId)
         {
             return await _repository.Entities.AnyAsync(b => b.InterestId==interestId);
