@@ -11,5 +11,6 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Repositories
     {
         Task<List<UserInterest>> GetInterestByUser(string userid);
         Task<bool> IsInterestUsed(int interestId);
+        Task<UserInterest> GetUserInterest(string userid, int interestid);
     }
 }
