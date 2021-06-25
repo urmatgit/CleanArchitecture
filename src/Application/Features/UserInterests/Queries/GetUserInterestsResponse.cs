@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlazorHero.CleanArchitecture.Application.Features.UserInterests.Queries.GetAll
+namespace BlazorHero.CleanArchitecture.Application.Features.UserInterests.Queries
 {
-    public class GetAllUserInterestsResponse
+    public class GetUserInterestsResponse
     {
         public string UserId { get; set; }
 

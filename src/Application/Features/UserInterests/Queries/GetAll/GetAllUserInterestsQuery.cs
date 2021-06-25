@@ -13,16 +13,16 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Application.Features.UserInterests.Queries.GetAll
 {
-    public class GetAllUserInterestsQuery: IRequest<Result<List<GetAllUserInterestsResponse>>>
+    public class GetAllUserInterestsQuery: IRequest<Result<List<GetUserInterestsResponse>>>
     {
         public string UserId { get; set; }
-        public GetAllUserInterestsQuery()
+        public GetAllUserInterestsQuery(string userid)
         {
-
+            UserId = userid;
         }
 
     }
-    internal class GetAllUserInterestsQueryHandler : IRequestHandler<GetAllUserInterestsQuery, Result<List<GetAllUserInterestsResponse>>>
+    internal class GetAllUserInterestsQueryHandler : IRequestHandler<GetAllUserInterestsQuery, Result<List<GetUserInterestsResponse>>>
     {
         private readonly IUnitOfWork<int> _unitOfWork;
         private readonly IMapper _mapper;
@@ -35,11 +35,11 @@ namespace BlazorHero.CleanArchitecture.Application.Features.UserInterests.Querie
             _cache = cache;
             _userInterestRepository = userInterestRepository;
         }
-        public async Task<Result<List<GetAllUserInterestsResponse>>> Handle(GetAllUserInterestsQuery request, CancellationToken cancellationToken)
+        public async Task<Result<List<GetUserInterestsResponse>>> Handle(GetAllUserInterestsQuery request, CancellationToken cancellationToken)
         {
             List<UserInterest> AllUserInterest = await  _userInterestRepository.GetInterestByUser(request.UserId);
-            var mapped = _mapper.Map<List<GetAllUserInterestsResponse>>(AllUserInterest);
-            return  await  Result<List<GetAllUserInterestsResponse>>.SuccessAsync (mapped);
+            var mapped = _mapper.Map<List<GetUserInterestsResponse>>(AllUserInterest);
+            return  await  Result<List<GetUserInterestsResponse>>.SuccessAsync (mapped);
         }
     }
 }
