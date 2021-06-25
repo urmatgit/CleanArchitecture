@@ -118,6 +118,13 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Edit = "Permissions.Interests.Edit";
             public const string Delete = "Permissions.Interests.Delete";
         }
+        public static class UserInterests
+        {
+            public const string View = "Permissions.UserInterests.View";
+            public const string Create = "Permissions.UserInterests.Create";
+            public const string Edit = "Permissions.UserInterests.Edit";
+            public const string Delete = "Permissions.UserInterests.Delete";
+        }
         public static class Fill
         {
             public const string Do = "Permissions.Fill.Do";
