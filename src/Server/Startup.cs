@@ -14,6 +14,7 @@ using System.IO;
 using BlazorHero.CleanArchitecture.Server.Filters;
 using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
 using Microsoft.Extensions.Localization;
+using Hangfire.SQLite;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
@@ -39,7 +40,8 @@ namespace BlazorHero.CleanArchitecture.Server
             });
             services.AddCurrentUserService();
             services.AddSerialization();
-            services.AddDatabase(_configuration);
+            //services.AddDatabase(_configuration);
+            services.AddDatabaseSqlite(_configuration);
             services.AddServerStorage(); //TODO - should implement ServerStorageProvider to work correctly!
             services.AddScoped<ServerPreferenceManager>();
             services.AddServerLocalization();
@@ -52,7 +54,8 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddSharedInfrastructure(_configuration);
             services.RegisterSwagger();
             services.AddInfrastructureMappings();
-            services.AddHangfire(x => x.UseSqlServerStorage(_configuration.GetConnectionString("DefaultConnection")));
+            services.AddHangfire(x => x.UseSQLiteStorage(_configuration.GetConnectionString("DefaultConnection")));
+            //services.AddHangfire(x => x.UseSqlServerStorage(_configuration.GetConnectionString("DefaultConnection")));
             services.AddHangfireServer();
             services.AddControllers().AddValidators();
             services.AddExtendedAttributesValidators();

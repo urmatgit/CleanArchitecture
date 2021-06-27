@@ -179,7 +179,13 @@ namespace BlazorHero.CleanArchitecture.Server.Extensions
                 .AddDbContext<BlazorHeroContext>(options => options
                     .UseSqlServer(configuration.GetConnectionString("DefaultConnection")))
             .AddTransient<IDatabaseSeeder, DatabaseSeeder>();
-
+        internal static IServiceCollection AddDatabaseSqlite(
+            this IServiceCollection services,
+            IConfiguration configuration)
+            => services
+                .AddDbContext<BlazorHeroContext>(options => options
+                    .UseSqlite(configuration.GetConnectionString("DefaultConnection")))
+            .AddTransient<IDatabaseSeeder, DatabaseSeeder>();
         internal static IServiceCollection AddCurrentUserService(this IServiceCollection services)
         {
             services.AddHttpContextAccessor();
