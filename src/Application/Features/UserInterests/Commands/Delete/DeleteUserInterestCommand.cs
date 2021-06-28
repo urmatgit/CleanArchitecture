@@ -15,8 +15,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.UserInterests.Comman
 {
     public class DeleteUserInterestCommand: IRequest<Result<int>>
     {
-        public string UserId { get; set; }
-        public int InterestId { get; set; }
+        public int Id { get; set; }
     }
     internal class DeleteUserInterestHandler: IRequestHandler<DeleteUserInterestCommand, Result<int>>
     {
@@ -32,7 +31,8 @@ namespace BlazorHero.CleanArchitecture.Application.Features.UserInterests.Comman
 
         public async Task<Result<int>> Handle(DeleteUserInterestCommand request, CancellationToken cancellationToken)
         {
-            var userinterest= await _userInterestRepository.GetUserInterest(request.UserId, request.InterestId);
+            var userinterest = await _unitOfWork.Repository<UserInterest>().GetByIdAsync(request.Id);
+                //await _userInterestRepository.GetUserInterest(request.UserId, request.InterestId);
             if (userinterest != null)
             {
                 await _unitOfWork.Repository<UserInterest>().DeleteAsync(userinterest);
