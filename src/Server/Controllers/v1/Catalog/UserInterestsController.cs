@@ -66,6 +66,15 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         {
             return Ok(await _mediator.Send(command));
         }
+        [Authorize(Policy = Permissions.Interests.Create)]
+        [HttpPost("editmass")]
+        public async Task<IActionResult> Post(AddMassInterestCommand command)
+        {
+            command.UserId = _currentUser.UserId;
+            return Ok(await _mediator.Send(command));
+        }
+
+        
         /// <summary>
         /// Delete a Interest 
         /// </summary>

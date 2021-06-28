@@ -38,6 +38,12 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Us
             var response = await _httpClient.PostAsJsonAsync(Routes.UserInterestsEndPoints.Save, request);
             return await response.ToResult<int>();
         }
+        public async Task<IResult<int>> EditMassAsync(AddMassInterestCommand request)
+        {
+            var response = await _httpClient.PostAsJsonAsync(Routes.UserInterestsEndPoints.EditMass, request);
+            return await response.ToResult<int>();
+        }
+        
 
         public async Task<IResult<List<GetAllInterestsCheckedResponse>>> GetCheckedAll()
         {
