@@ -26,7 +26,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         /// Get All Interests
         /// </summary>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Interests.View)]
+        [Authorize(Policy = Permissions.UserInterests.View)]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -34,7 +34,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
             var brands = await _mediator.Send(new GetAllUserInterestsQuery(_currentUser.UserId));
             return Ok(brands);
         }
-        [Authorize(Policy = Permissions.Interests.View)]
+        [Authorize(Policy = Permissions.UserInterests.View)]
         [HttpGet("GetCheckedAll")]
         public async Task<IActionResult> GetCheckedAll()
         {
@@ -47,7 +47,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 Ok</returns>
-        [Authorize(Policy = Permissions.Interests.View)]
+        [Authorize(Policy = Permissions.UserInterests.View)]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -60,13 +60,13 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         /// </summary>
         /// <param name="command"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Interests.Create)]
+        [Authorize(Policy = Permissions.UserInterests.Create)]
         [HttpPost]
         public async Task<IActionResult> Post(AddEditUserInterestCommand command)
         {
             return Ok(await _mediator.Send(command));
         }
-        [Authorize(Policy = Permissions.Interests.Create)]
+        [Authorize(Policy = Permissions.UserInterests.Edit)]
         [HttpPost("editmass")]
         public async Task<IActionResult> Post(AddMassInterestCommand command)
         {
@@ -80,7 +80,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1.Catalog
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Status 200 OK</returns>
-        [Authorize(Policy = Permissions.Interests.Delete)]
+        [Authorize(Policy = Permissions.UserInterests.Delete)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

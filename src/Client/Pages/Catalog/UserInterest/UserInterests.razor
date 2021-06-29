@@ -1,5 +1,5 @@
 ﻿@page "/catalog/userinterests"
-@attribute [Authorize(Policy = Permissions.Interests.View)]
+@attribute [Authorize(Policy = Permissions.UserInterests.View)]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserInterests> _localizer
 @using BlazorHero.CleanArchitecture.Application.Features.UserInterests.Queries.GetAll
 @using BlazorHero.CleanArchitecture.Client.Extensions.Controls;

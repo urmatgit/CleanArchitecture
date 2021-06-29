@@ -143,6 +143,6 @@
         _canViewInterests = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Interests.View)).Succeeded;
         _canFillData = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Fill.Do)).Succeeded;
 
-        _canViewUserInterests = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Interests.View)).Succeeded;
+        _canViewUserInterests = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.UserInterests.View)).Succeeded;
     }
 }
