@@ -1,5 +1,5 @@
 ﻿@page "/catalog/userinterests"
-@attribute [Authorize(Policy = Permissions.Interests.View)]
+@attribute [Authorize(Policy = Permissions.UserInterests.View)]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<UserInterests> _localizer
 @using BlazorHero.CleanArchitecture.Application.Features.UserInterests.Queries.GetAll
 @using BlazorHero.CleanArchitecture.Client.Extensions.Controls;
@@ -9,7 +9,7 @@
         <MudChipSet  @bind-SelectedChips="selected"  MultiSelection="true" Filter="true" >
             @foreach (var value in _interestList)
             {
-                <MudChipEx Text="@value.Name" Default="@value.Checked" Id="@value.Id"   ></MudChipEx>
+                <MudChipEx Text="@value.Name" Default="@value.Checked" Id="@value.Id" OnClick="MudChipCliked"   ></MudChipEx>
             }
 
             @*<MudChip Text="Milk"></MudChip>
@@ -22,6 +22,6 @@
         </MudChipSet>
     </MudCardContent>
     <MudCardActions>
-        <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="DoSave">@_localizer["Save"]</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Success" OnClick="DoSave" Disabled="@(!IsChanged)" >@_localizer["Save"]</MudButton>
     </MudCardActions>
 </MudCard>

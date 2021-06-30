@@ -12,6 +12,8 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
         public static string GetAll = "api/v1/userinterests";
         public static string Delete = "api/v1/userinterests";
         public static string Save = "api/v1/userinterests";
+        
+        public static string EditMass = "api/v1/userinterests/editmass";
         public static string GetCount = "api/v1/userinterests/count";
     }
 }

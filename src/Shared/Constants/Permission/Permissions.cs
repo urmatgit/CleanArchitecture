@@ -118,6 +118,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Edit = "Permissions.Interests.Edit";
             public const string Delete = "Permissions.Interests.Delete";
         }
+
         public static class UserInterests
         {
             public const string View = "Permissions.UserInterests.View";
@@ -129,10 +130,10 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         {
             public const string Do = "Permissions.Fill.Do";
         }
-       /// <summary>
-       /// Returns a list of Permissions.
-       /// </summary>
-       /// <returns></returns>
+        /// <summary>
+        /// Returns a list of Permissions.
+        /// </summary>
+        /// <returns></returns>
         public static List<string> GetRegisteredPermissions()
         {
             var permssions = new List<string>();

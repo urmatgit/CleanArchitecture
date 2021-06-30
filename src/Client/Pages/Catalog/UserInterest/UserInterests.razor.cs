@@ -1,4 +1,5 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.UserInterests.Queries.GetAll;
+﻿using BlazorHero.CleanArchitecture.Application.Features.UserInterests.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.UserInterests.Queries.GetAll;
 using BlazorHero.CleanArchitecture.Client.Extensions;
 using BlazorHero.CleanArchitecture.Client.Extensions.Controls;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.UserInterest;
@@ -17,6 +18,8 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog.UserInterest
         [Inject] private IUserInterestManager UserInterestManager { get; set; }
         [CascadingParameter] private HubConnection HubConnection { get; set; }
         private List<GetAllInterestsCheckedResponse> _interestList = new();
+
+        private bool IsChanged { get; set; }
 
         MudChip[] selected;
         protected override async Task OnInitializedAsync()
@@ -44,26 +47,37 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog.UserInterest
                 }
             }
         }
+        private async Task MudChipCliked(object par)
+        {
+            IsChanged = true;
+        }
         private async Task DoSave()
         {
+           
             if (selected!=null && selected.Length > 0)
             {
+                 
+                List<int> selectedInterests = new List<int>();
+
                 foreach(MudChip mudChip in selected)
                 {
-                    MudChipEx mudChipEx = mudChip as MudChipEx;
-                    GetAllInterestsCheckedResponse existInterest = _interestList.FirstOrDefault(i => i.UserInterestId == mudChipEx.Id);
-                    if (existInterest!=null)
+                    selectedInterests.Add((mudChip as MudChipEx).Id);
+                }
+                var response = await UserInterestManager.EditMassAsync(new AddMassInterestCommand() { InterestIds = selectedInterests });
+                if (response.Succeeded)
+                {
+                    _snackBar.Add(response.Messages[0], Severity.Success);
+                }
+                else
+                {
+                    foreach (var message in response.Messages)
                     {
-                        //Update
-                        
-
+                        _snackBar.Add(message, Severity.Error);
                     }
-                    else
-                    {
-                        //Add interest
-                    }
-                }     
+                    await GetInterestsAsync();
+                }
             }
+            IsChanged = false;
         }
         private async Task DoInterestClick(MudChip[] mudChipIces)
         {

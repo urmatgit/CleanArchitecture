@@ -16,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.Us
         Task<IResult<List<GetUserInterestsResponse>>> GetAllAsync();
 
         Task<IResult<int>> SaveAsync(AddEditUserInterestCommand request);
+        Task<IResult<int>> EditMassAsync(AddMassInterestCommand request);
 
         Task<IResult<int>> DeleteAsync(int id);
     }
