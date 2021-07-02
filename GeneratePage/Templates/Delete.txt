@@ -1,0 +1,47 @@
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+
+namespace BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Commands.Delete
+{
+    public class Delete<FieldName>Command : IRequest<Result<int>>
+    {
+        public int Id { get; set; }
+    }
+
+    internal class Delete<FieldName>CommandHandler : IRequestHandler<Delete<FieldName>Command, Result<int>>
+    {
+        
+        private readonly IStringLocalizer<Delete<FieldName>CommandHandler> _localizer;
+        private readonly IUnitOfWork<int> _unitOfWork;
+
+        public Delete<FieldName>CommandHandler(IUnitOfWork<int> unitOfWork, IStringLocalizer<Delete<FieldName>CommandHandler> localizer)
+        {
+            _unitOfWork = unitOfWork;
+            
+            _localizer = localizer;
+        }
+
+        public async Task<Result<int>> Handle(Delete<FieldName>Command command, CancellationToken cancellationToken)
+        {
+            
+                var brand = await _unitOfWork.Repository<<FieldName>>().GetByIdAsync(command.Id);
+                if (brand != null)
+                {
+                    await _unitOfWork.Repository<<FieldName>>().DeleteAsync(brand);
+                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAll<FieldName>sCacheKey);
+                    return await Result<int>.SuccessAsync(brand.Id, _localizer["<FieldName> Deleted"]);
+                }
+                else
+                {
+                    return await Result<int>.FailAsync(_localizer["<FieldName> Not Found!"]);
+                }
+             
+        }
+    }
+}

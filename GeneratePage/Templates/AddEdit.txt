@@ -1,0 +1,60 @@
+﻿using System.ComponentModel.DataAnnotations;
+using AutoMapper;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Localization;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+
+namespace BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Commands.AddEdit
+{
+    public partial class AddEdit<FieldName>Command : IRequest<Result<int>>
+    {
+        //TODO Fields
+    }
+
+    internal class AddEdit<FieldName>CommandHandler : IRequestHandler<AddEdit<FieldName>Command, Result<int>>
+    {
+        private readonly IMapper _mapper;
+        private readonly IStringLocalizer<AddEdit<FieldName>CommandHandler> _localizer;
+        private readonly IUnitOfWork<int> _unitOfWork;
+
+        public AddEditBrandCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IStringLocalizer<AddEdit<FieldName>CommandHandler> localizer)
+        {
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _localizer = localizer;
+        }
+
+        public async Task<Result<int>> Handle(AddEdit<FieldName>Command command, CancellationToken cancellationToken)
+        {
+            if (command.Id == 0)
+            {
+                var brand = _mapper.Map<<FieldName>>(command);
+                await _unitOfWork.Repository<<FieldName>>().AddAsync(brand);
+                await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAll<FieldName>sCacheKey);
+                return await Result<int>.SuccessAsync(brand.Id, _localizer["<FieldName> Saved"]);
+            }
+            else
+            {
+                var brand = await _unitOfWork.Repository<<FieldName>>().GetByIdAsync(command.Id);
+                if (brand != null)
+                {
+                    brand.Name = command.Name ?? brand.Name;
+                    brand.Tax = (command.Tax == 0) ? brand.Tax : command.Tax;
+                    brand.Description = command.Description ?? brand.Description;
+                    await _unitOfWork.Repository<<FieldName>>().UpdateAsync(brand);
+                    await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAll<FieldName>sCacheKey);
+                    return await Result<int>.SuccessAsync(brand.Id, _localizer["<FieldName> Updated"]);
+                }
+                else
+                {
+                    return await Result<int>.FailAsync(_localizer["<FieldName> Not Found!"]);
+                }
+            }
+        }
+    }
+}
