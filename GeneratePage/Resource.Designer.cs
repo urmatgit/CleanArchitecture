@@ -124,5 +124,222 @@ namespace GeneratePage {
                 return ResourceManager.GetString("DomainEntity", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using System;
+        ///using System.Collections.Generic;
+        ///using System.Threading;
+        ///using System.Threading.Tasks;
+        ///using BlazorHero.CleanArchitecture.Application.Extensions;
+        ///using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+        ///using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+        ///using BlazorHero.CleanArchitecture.Application.Specifications.Catalog;
+        ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+        ///using BlazorHero.CleanArchitecture.Shared.Wrapper;
+        ///using MediatR;
+        ///usi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Export {
+            get {
+                return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using AutoMapper;
+        ///using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+        ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+        ///using BlazorHero.CleanArchitecture.Shared.Wrapper;
+        ///using MediatR;
+        ///using System.Threading;
+        ///using System.Threading.Tasks;
+        ///
+        ///namespace BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetById
+        ///{
+        ///    public class Get&lt;FieldName&gt;ByIdQuery : IRequest&lt;Result&lt;Get&lt;FieldName&gt;ByIdResponse&gt;&gt;
+        ///    {
+        ///        public int Id { get; set; }
+        ///    }
+        /// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Get {
+            get {
+                return ResourceManager.GetString("Get", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using AutoMapper;
+        ///using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+        ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+        ///using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+        ///using BlazorHero.CleanArchitecture.Shared.Wrapper;
+        ///using LazyCache;
+        ///using MediatR;
+        ///using System;
+        ///using System.Collections.Generic;
+        ///using System.Threading;
+        ///using System.Threading.Tasks;
+        ///
+        ///namespace BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll
+        ///{
+        ///    pub [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string GetAll {
+            get {
+                return ResourceManager.GetString("GetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll
+        ///{
+        ///    public class GetAll&lt;FieldName&gt;sResponse
+        ///    {
+        ///        public int Id { get; set; }
+        ///        public string Name { get; set; }
+        ///        public string Description { get; set; }
+        ///        //TODO add other fields
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string GetAllResponse {
+            get {
+                return ResourceManager.GetString("GetAllResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetById
+        ///{
+        ///    public class Get&lt;FieldName&gt;ByIdResponse
+        ///    {
+        ///        public int Id { get; set; }
+        ///        public string Name { get; set; }
+        ///        public string Description { get; set; }
+        ///        //TODO other Fields
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string GetResponse {
+            get {
+                return ResourceManager.GetString("GetResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace BlazorHero.CleanArchitecture.Application.Interfaces.Repositories
+        ///{
+        ///    public interface I&lt;FieldName&gt;Repository
+        ///    {
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string I {
+            get {
+                return ResourceManager.GetString("I", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll;
+        ///using BlazorHero.CleanArchitecture.Shared.Wrapper;
+        ///using System.Collections.Generic;
+        ///using System.Threading.Tasks;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Commands.AddEdit;
+        ///
+        ///namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.&lt;FieldName&gt;
+        ///{
+        ///    public interface I&lt;FieldName&gt;Manager : IManager
+        ///    {
+        ///        Task&lt;IResult&lt;List&lt;GetAll&lt;FieldName&gt;sResponse&gt;&gt;&gt; GetAllAs [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string IManager {
+            get {
+                return ResourceManager.GetString("IManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll;
+        ///using BlazorHero.CleanArchitecture.Client.Infrastructure.Extensions;
+        ///using BlazorHero.CleanArchitecture.Shared.Wrapper;
+        ///using System.Collections.Generic;
+        ///using System.Net.Http;
+        ///using System.Net.Http.Json;
+        ///using System.Threading.Tasks;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Commands.AddEdit;
+        ///
+        ///namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.&lt;FieldName&gt;
+        ///{
+        ///  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Manager {
+            get {
+                return ResourceManager.GetString("Manager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to public static class &lt;FieldName&gt;s
+        ///        {
+        ///            public const string View = &quot;Permissions.&lt;FieldName&gt;s.View&quot;;
+        ///            public const string Create = &quot;Permissions.&lt;FieldName&gt;s.Create&quot;;
+        ///            public const string Edit = &quot;Permissions.&lt;FieldName&gt;s.Edit&quot;;
+        ///            public const string Delete = &quot;Permissions.&lt;FieldName&gt;s.Delete&quot;;
+        ///            public const string Export = &quot;Permissions.&lt;FieldName&gt;s.Export&quot;;
+        ///            public const string Search = &quot;Permissions.&lt;FieldName&gt;s.Search&quot;;
+        ///        }
+        ///.
+        /// </summary>
+        internal static string Permission {
+            get {
+                return ResourceManager.GetString("Permission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using AutoMapper;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Commands.AddEdit;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetById;
+        ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+        ///
+        ///namespace BlazorHero.CleanArchitecture.Application.Mappings
+        ///{
+        ///    public class &lt;FieldName&gt;Profile : Profile
+        ///    {
+        ///        public &lt;FieldName&gt;Profile()
+        ///        {
+        ///    [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+        ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+        ///
+        ///namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
+        ///{
+        ///    public class &lt;FieldName&gt;Repository : I&lt;FieldName&gt;Repository
+        ///    {
+        ///        private readonly IRepositoryAsync&lt;&lt;FieldName&gt;, int&gt; _repository;
+        ///
+        ///        public &lt;FieldName&gt;Repository(IRepositoryAsync&lt;&lt;FieldName&gt;, int&gt; repository)
+        ///        {
+        ///            _repository = repository;
+        ///        }
+        ///    }
+        ///}.
+        /// </summary>
+        internal static string Repository {
+            get {
+                return ResourceManager.GetString("Repository", resourceCulture);
+            }
+        }
     }
 }

@@ -1,0 +1,43 @@
+﻿using AutoMapper;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+using BlazorHero.CleanArchitecture.Shared.Wrapper;
+using LazyCache;
+using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Queries.GetAll
+{
+    public class GetAll<FieldName>sQuery : IRequest<Result<List<GetAll<FieldName>sResponse>>>
+    {
+        public GetAll<FieldName>sQuery()
+        {
+        }
+    }
+
+    internal class GetAll<FieldName>sCachedQueryHandler : IRequestHandler<GetAll<FieldName>sQuery, Result<List<GetAll<FieldName>sResponse>>>
+    {
+        private readonly IUnitOfWork<int> _unitOfWork;
+        private readonly IMapper _mapper;
+        private readonly IAppCache _cache;
+
+        public GetAll<FieldName>sCachedQueryHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IAppCache cache)
+        {
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _cache = cache;
+        }
+
+        public async Task<Result<List<GetAll<FieldName>sResponse>>> Handle(GetAll<FieldName>sQuery request, CancellationToken cancellationToken)
+        {
+            Func<Task<List<<FieldName>>>> getAll<FieldName>s = () => _unitOfWork.Repository<<FieldName>>().GetAllAsync();
+            var brandList = await _cache.GetOrAddAsync(ApplicationConstants.Cache.GetAll<FieldName>sCacheKey, getAll<FieldName>s);
+            var mapped<FieldName>s = _mapper.Map<List<GetAll<FieldName>sResponse>>(brandList);
+            return await Result<List<GetAll<FieldName>sResponse>>.SuccessAsync(mapped<FieldName>s);
+        }
+    }
+}

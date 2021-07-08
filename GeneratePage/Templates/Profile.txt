@@ -1,0 +1,18 @@
+﻿using AutoMapper;
+using BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Commands.AddEdit;
+using BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Queries.GetAll;
+using BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Queries.GetById;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+
+namespace BlazorHero.CleanArchitecture.Application.Mappings
+{
+    public class <FieldName>Profile : Profile
+    {
+        public <FieldName>Profile()
+        {
+            CreateMap<AddEdit<FieldName>Command, <FieldName>>().ReverseMap();
+            CreateMap<Get<FieldName>ByIdResponse, <FieldName>>().ReverseMap();
+            CreateMap<GetAll<FieldName>sResponse, <FieldName>>().ReverseMap();
+        }
+    }
+}

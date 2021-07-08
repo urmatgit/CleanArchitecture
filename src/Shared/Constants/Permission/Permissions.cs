@@ -130,6 +130,7 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
         {
             public const string Do = "Permissions.Fill.Do";
         }
+        //TODO Add permissions
         /// <summary>
         /// Returns a list of Permissions.
         /// </summary>

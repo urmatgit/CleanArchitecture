@@ -1,0 +1,10 @@
+﻿namespace BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Queries.GetById
+{
+    public class Get<FieldName>ByIdResponse
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        //TODO other Fields
+    }
+}
