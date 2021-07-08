@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Command
         private readonly IStringLocalizer<AddEdit<FieldName>CommandHandler> _localizer;
         private readonly IUnitOfWork<int> _unitOfWork;
 
-        public AddEditBrandCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IStringLocalizer<AddEdit<FieldName>CommandHandler> localizer)
+        public AddEditFieldName>CommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IStringLocalizer<AddEdit<FieldName>CommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

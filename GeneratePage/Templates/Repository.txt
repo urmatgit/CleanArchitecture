@@ -1,0 +1,15 @@
+﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
+using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+
+namespace BlazorHero.CleanArchitecture.Infrastructure.Repositories
+{
+    public class <FieldName>Repository : I<FieldName>Repository
+    {
+        private readonly IRepositoryAsync<<FieldName>, int> _repository;
+
+        public <FieldName>Repository(IRepositoryAsync<<FieldName>, int> repository)
+        {
+            _repository = repository;
+        }
+    }
+}

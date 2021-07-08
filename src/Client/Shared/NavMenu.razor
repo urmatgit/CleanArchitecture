@@ -94,6 +94,7 @@
         </MudNavLink>
 
     }
+    @*//TODO add to menu*@
     @if (_canViewUserInterests)
     {
     <MudNavLink Href="/catalog/userinterests" Icon="@Icons.Material.Outlined.CallToAction">
@@ -126,6 +127,7 @@
     private bool _canViewUserInterests;
 
     private bool _canFillData;
+    //TODO Add _canViewProperty
 
     protected override async Task OnParametersSetAsync()
     {
@@ -144,5 +146,7 @@
         _canFillData = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Fill.Do)).Succeeded;
 
         _canViewUserInterests = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.UserInterests.View)).Succeeded;
+
+        //TODO Add _canView
     }
 }

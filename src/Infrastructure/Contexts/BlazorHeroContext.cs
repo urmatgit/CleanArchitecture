@@ -36,6 +36,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<UserInterest> UserInterests { get; set; }
         public DbSet<Interest> Interests { get; set; }
 
+        //TODO add entities
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {
             foreach (var entry in ChangeTracker.Entries<IAuditableEntity>().ToList())

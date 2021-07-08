@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.TestTypes.Commands.A
         private readonly IStringLocalizer<AddEditTestTypeCommandHandler> _localizer;
         private readonly IUnitOfWork<int> _unitOfWork;
 
-        public AddEditBrandCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IStringLocalizer<AddEditTestTypeCommandHandler> localizer)
+        public AddEditTestTypeCommandHandler(IUnitOfWork<int> unitOfWork, IMapper mapper, IStringLocalizer<AddEditTestTypeCommandHandler> localizer)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

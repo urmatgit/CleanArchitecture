@@ -1,0 +1,9 @@
+﻿public static class <FieldName>s
+        {
+            public const string View = "Permissions.<FieldName>s.View";
+            public const string Create = "Permissions.<FieldName>s.Create";
+            public const string Edit = "Permissions.<FieldName>s.Edit";
+            public const string Delete = "Permissions.<FieldName>s.Delete";
+            public const string Export = "Permissions.<FieldName>s.Export";
+            public const string Search = "Permissions.<FieldName>s.Search";
+        }

@@ -17,6 +17,7 @@ namespace GeneratePage
         {
             const string MainPath = @"C:\Git\Last\CleanArchitecture\src\";
             const string TagField = "<FieldName>";
+            const string TagFieldLow = "<!FieldName>";
             string FieldName { get; set; }
             public Generate(string fieldname)
             {
@@ -57,9 +58,73 @@ namespace GeneratePage
                     
                     WriteFile(PathCommand, "Delete", "Command");
                     //Queries
-                    fullPath = Path.Combine(MainPath, appPath, "Features", FieldNameWithS);
+                     fullPath = Path.Combine(MainPath, appPath, "Features", FieldNameWithS);
                     fullPath = CreateDir(fullPath, "Queries");
 
+                    var subfullPath = CreateDir(fullPath, "Export");
+                    WriteFile(subfullPath, "Export", "sQuery");
+
+                    subfullPath = CreateDir(fullPath, "GetAll");
+                    WriteFile(subfullPath, "GetAll", "sQuery");
+                    WriteFile(subfullPath, "GetAll", "sResponse",otherResname:"GetAllResponse");
+
+                    subfullPath = CreateDir(fullPath, "GetById");
+                    WriteFile(subfullPath, "Get", "ByIdQuery");
+                    WriteFile(subfullPath, "Get", "Response", otherResname: "GetResponse");
+
+                    //Mapping
+                    fullPath = Path.Combine(MainPath, appPath, "Mappings");
+                    WriteFile(fullPath, "Profile",useResNameToFile: false,endPrefix: "Profile");
+
+                    // Server
+                    //Controller
+                      fullPath = Path.Combine(MainPath, @"Server\Controllers\v1\Catalog");
+                    WriteFile(fullPath, "Controller", useResNameToFile: false, endPrefix: "sController");
+
+                    //Add Entity Class in DbContext
+                    fullPath = Path.Combine(MainPath, @"Infrastructure\Contexts", "BlazorHeroContext.cs");
+                    AddLineToFile(fullPath, "//TODO add entities", $"DbSet<{FieldName}> {FieldName}s "+ "{ get;set; }");
+
+                    //Add Repository Changes (as per required Logic)
+                      fullPath = Path.Combine(MainPath, appPath, @"Interfaces\Repositories");
+                    WriteFile(fullPath, "I", endPrefix: "Repository");
+                    fullPath = Path.Combine(MainPath, @"Infrastructure\Repositories");
+                    WriteFile(fullPath, "Repository",useResNameToFile: false,  endPrefix: "Repository");
+
+                    //Permissions
+                    //E:\Git\Last\CleanArchitecture\src\Shared\Constants\Permission\Permissions.cs
+                    fullPath = Path.Combine(MainPath, @"Shared\Constants\Permission\Permissions.cs");
+                    AddLineToFile(fullPath, "//TODO Add permissions", GetStringFromRes("Permission"));
+                    
+                    // Add Cache key
+                    //E:\Git\Last\CleanArchitecture\src\Shared\Constants\Application\ApplicationConstants.cs
+                    fullPath = Path.Combine(MainPath, @"Infrastructure\Contexts", "BlazorHeroContext.cs");
+                    AddLineToFile(fullPath, "//TODO Add cache key", $"public const string GetAll{FieldName}sCacheKey = \"all - {FieldName.ToLower()}s\";");
+
+                //Client.Infrastructure
+                //(Add Folder XyzManager in Manager Folder)
+                //E:\Git\Last\CleanArchitecture\src\Client.Infrastructure\Managers\Catalog\Brand\BrandManager.cs
+                fullPath = Path.Combine(MainPath, @"Client.Infrastructure\Managers\Catalog", FieldName);
+                 CreateDir(fullPath);
+                WriteFile(fullPath, "IManager", useResNameToFile: false, endPrefix: "Manager",startPrefix: "I");
+                    WriteFile(fullPath, "Manager", useResNameToFile: false, endPrefix: "Manager");
+
+                    //Add XyzEndPoint.cs in Routes Folder (http link to the controller) Link name should match the controller Name.
+                    fullPath = Path.Combine(MainPath, @"Client.Infrastructure\Routes");
+                    WriteFile(fullPath, "Endpoints", useResNameToFile: false, endPrefix: "sEndpoints");
+                    //Add Link to SideBar in NavMenu.razor
+                    //E:\Git\Last\CleanArchitecture\src\Client\Shared\NavMenu.razor
+                    fullPath = Path.Combine(MainPath, @"Client\Shared\NavMenu.razor");
+                    //TODO Add _canViewProperty
+                    AddLineToFile(fullPath, "//TODO Add _canViewProperty", $"private bool _canView{FieldName}s;");
+                    
+                    AddLineToFile(fullPath, "//TODO Add _canView", $"_canView{FieldName}s = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.{FieldName}s.View)).Succeeded;");
+
+                    //@*//TODO add to menu*@
+                    AddLineToFile(fullPath, "@*//TODO add to menu*@",
+                       $"@if(_canViewUser{FieldName}s) \n" +"{"+
+                       $"\n <MudNavLink Href = \"/catalog/user{ FieldName.ToLower()}s\" Icon = \"@Icons.Material.Outlined.CallToAction\">" +
+                       $"@_localizer[\"User {FieldName.ToLower()}s\"] \n </ MudNavLink>"+"}");
                 }
                 catch (Exception er)
                 {
@@ -68,13 +133,58 @@ namespace GeneratePage
                 }
                 return Result;
             }
-            private bool WriteFile(string path,string resName,string prefix="",bool useResNameToFile=true)
+            private string GetStringFromRes(string resName)
+            {
+                var entity = Resource.ResourceManager.GetString( resName , Resource.Culture).Replace(TagField, FieldName);
+                return entity;
+            }
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="path"></param>
+            /// <param name="afterLine"></param>
+            /// <param name="newLine"></param>
+            /// <returns></returns>
+            private bool AddLineToFile(string path, string afterLine, string newLine)
             {
                 bool Result = true;
                 try
                 {
-                    var entity = Resource.ResourceManager.GetString(resName, Resource.Culture).Replace(TagField, FieldName);
-                    string filename = $"{ (useResNameToFile ? resName : "")}{FieldName}{prefix}.cs";
+                    string body = File.ReadAllText(path);
+                    int index = body.IndexOf(afterLine);
+                    if (index > 0)
+                    {
+                        body.Insert(index + afterLine.Length,$"{System.Environment.NewLine}{newLine}{System.Environment.NewLine}");
+
+                        File.WriteAllText(path, body);
+                    }
+                }
+                catch (Exception er)
+                {
+                    Result = false;
+                    Console.WriteLine(er.Message);
+                }
+                return Result;
+            }
+            /// <summary>
+            ///  create file {path}\{startPrefix}{resName}{FieldName}{endPrefix}.cs
+            /// </summary>
+            /// <param name="path"></param>
+            /// <param name="resName"></param>
+            /// <param name="endPrefix"></param>
+            /// <param name="startPrefix"></param>
+            /// <param name="useResNameToFile"></param>
+            /// <returns></returns>
+            private bool WriteFile(string path,string resName,string endPrefix="",string startPrefix="", bool useResNameToFile=true,string otherResname="")
+            {
+                bool Result = true;
+                try
+                {
+                    var entity = Resource.ResourceManager.GetString(string.IsNullOrEmpty(otherResname) ? resName : otherResname, Resource.Culture)
+                        .Replace(TagField, FieldName)
+                        .Replace(TagFieldLow,FieldName.ToLower());
+                         
+                    string filename = $"{startPrefix}{ (useResNameToFile ? resName : "")}{FieldName}{endPrefix}.cs";
                     File.WriteAllText(Path.Combine( path,filename), entity);
                 }
                 catch (Exception er)
