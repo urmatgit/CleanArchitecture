@@ -81,6 +81,22 @@ namespace GeneratePage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetById;
+        ///using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+        ///using Microsoft.AspNetCore.Authorization;
+        ///using Microsoft.AspNetCore.Mvc;
+        ///using System.Threading.Tasks;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Commands.AddEdit;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Commands.D [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Controller {
+            get {
+                return ResourceManager.GetString("Controller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
         ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
         ///using BlazorHero.CleanArchitecture.Shared.Wrapper;
@@ -122,6 +138,28 @@ namespace GeneratePage {
         internal static string DomainEntity {
             get {
                 return ResourceManager.GetString("DomainEntity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
+        ///{
+        ///    public static class &lt;FieldName&gt;sEndpoints
+        ///    {
+        ///        public static string ExportFiltered(string searchString)
+        ///        {
+        ///            return $&quot;{Export}?searchString={searchString}&quot;;
+        ///        }
+        ///
+        ///        public static string Export = &quot;api/v1/&lt;!FieldName&gt;s/export&quot;;
+        ///
+        ///        public static string GetAll = &quot;api/v1/&lt;!FieldName&gt;s&quot;;
+        ///        public static string Delete = &quot;api/v1/&lt;!FieldName&gt;s&quot;;
+        ///        public static string Save = &quot; [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Endpoints {
+            get {
+                return ResourceManager.GetString("Endpoints", resourceCulture);
             }
         }
         

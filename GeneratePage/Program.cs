@@ -15,7 +15,7 @@ namespace GeneratePage
         }
         class Generate
         {
-            const string MainPath = @"C:\Git\Last\CleanArchitecture\src\";
+            const string MainPath = @"E:\Git\Last\CleanArchitecture\src\";
             const string TagField = "<FieldName>";
             const string TagFieldLow = "<!FieldName>";
             string FieldName { get; set; }
@@ -74,11 +74,13 @@ namespace GeneratePage
 
                     //Mapping
                     fullPath = Path.Combine(MainPath, appPath, "Mappings");
+                    CreateDir(fullPath);
                     WriteFile(fullPath, "Profile",useResNameToFile: false,endPrefix: "Profile");
 
                     // Server
                     //Controller
-                      fullPath = Path.Combine(MainPath, @"Server\Controllers\v1\Catalog");
+                    //E:\Git\Last\CleanArchitecture\src\Server\Controllers\v1\Catalog
+                    fullPath = Path.Combine(MainPath, @"Server\Controllers\v1\Catalog");
                     WriteFile(fullPath, "Controller", useResNameToFile: false, endPrefix: "sController");
 
                     //Add Entity Class in DbContext
@@ -98,8 +100,8 @@ namespace GeneratePage
                     
                     // Add Cache key
                     //E:\Git\Last\CleanArchitecture\src\Shared\Constants\Application\ApplicationConstants.cs
-                    fullPath = Path.Combine(MainPath, @"Infrastructure\Contexts", "BlazorHeroContext.cs");
-                    AddLineToFile(fullPath, "//TODO Add cache key", $"public const string GetAll{FieldName}sCacheKey = \"all - {FieldName.ToLower()}s\";");
+                    fullPath = Path.Combine(MainPath, @"Shared\Constants\Application\ApplicationConstants.cs");
+                    AddLineToFile(fullPath, "//TODO Add cache key", $"public const string GetAll{FieldName}sCacheKey = \"all-{FieldName.ToLower()}s\";");
 
                 //Client.Infrastructure
                 //(Add Folder XyzManager in Manager Folder)
@@ -133,7 +135,9 @@ namespace GeneratePage
                     WriteFile(fullPath, "razor", useResNameToFile: false, endPrefix: "s",ext: ".razor");
                     WriteFile(fullPath, "razor.cs", useResNameToFile: false, endPrefix: "s", ext: ".razor.cs");
 
-                    //@*//TODO add import*@
+                //@*//TODO add import*@
+                //E:\Git\Last\CleanArchitecture\src\Client\_Imports.razor
+                fullPath = Path.Combine(MainPath, @"Client\_Imports.razor");
                     AddLineToFile(fullPath, "@*//TODO add import*@", $"@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.{FieldName};");
 
 
@@ -166,15 +170,18 @@ namespace GeneratePage
                     int index = body.IndexOf(afterLine);
                     if (index > 0)
                     {
-                        body.Insert(index + afterLine.Length,$"{System.Environment.NewLine}{newLine}{System.Environment.NewLine}");
+                       body= body.Insert(index + afterLine.Length,$"{System.Environment.NewLine}{newLine}{System.Environment.NewLine}");
 
                         File.WriteAllText(path, body);
+                        Console.WriteLine($"Add line {afterLine} completed");
                     }
+
                 }
                 catch (Exception er)
                 {
                     Result = false;
-                    Console.WriteLine(er.Message);
+                    Console.WriteLine($"Add line {afterLine} errror {er.Message} ");
+                    
                 }
                 return Result;
             }
@@ -198,11 +205,12 @@ namespace GeneratePage
                          
                     string filename = $"{startPrefix}{ (useResNameToFile ? resName : "")}{FieldName}{endPrefix}{ext}";
                     File.WriteAllText(Path.Combine( path,filename), entity);
+                    Console.WriteLine($"{resName} completed");
                 }
                 catch (Exception er)
                 {
                     Result = false;
-                    Console.WriteLine(er.Message);
+                    Console.WriteLine($"{resName} err {er.Message} ");
                 }
                 return Result;
             }
