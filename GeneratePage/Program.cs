@@ -124,7 +124,19 @@ namespace GeneratePage
                     AddLineToFile(fullPath, "@*//TODO add to menu*@",
                        $"@if(_canViewUser{FieldName}s) \n" +"{"+
                        $"\n <MudNavLink Href = \"/catalog/user{ FieldName.ToLower()}s\" Icon = \"@Icons.Material.Outlined.CallToAction\">" +
-                       $"@_localizer[\"User {FieldName.ToLower()}s\"] \n </ MudNavLink>"+"}");
+                       $"@_localizer[\"User {FieldName.ToLower()}s\"] \n </ MudNavLink>"+"\n}");
+
+                    //Client
+                    //E:\Git\Last\CleanArchitecture\src\Client\Pages\Catalog
+                    fullPath = Path.Combine(MainPath, @"Client\Pages\Catalog");
+                    fullPath= CreateDir(fullPath, FieldName);
+                    WriteFile(fullPath, "razor", useResNameToFile: false, endPrefix: "s",ext: ".razor");
+                    WriteFile(fullPath, "razor.cs", useResNameToFile: false, endPrefix: "s", ext: ".razor.cs");
+
+                    //@*//TODO add import*@
+                    AddLineToFile(fullPath, "@*//TODO add import*@", $"@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.{FieldName};");
+
+
                 }
                 catch (Exception er)
                 {
@@ -167,7 +179,7 @@ namespace GeneratePage
                 return Result;
             }
             /// <summary>
-            ///  create file {path}\{startPrefix}{resName}{FieldName}{endPrefix}.cs
+            ///  create file {path}\{startPrefix}{resName}{FieldName}{endPrefix}{ext}
             /// </summary>
             /// <param name="path"></param>
             /// <param name="resName"></param>
@@ -175,7 +187,7 @@ namespace GeneratePage
             /// <param name="startPrefix"></param>
             /// <param name="useResNameToFile"></param>
             /// <returns></returns>
-            private bool WriteFile(string path,string resName,string endPrefix="",string startPrefix="", bool useResNameToFile=true,string otherResname="")
+            private bool WriteFile(string path,string resName,string endPrefix="",string startPrefix="", bool useResNameToFile=true,string otherResname="",string ext=".cs")
             {
                 bool Result = true;
                 try
@@ -184,7 +196,7 @@ namespace GeneratePage
                         .Replace(TagField, FieldName)
                         .Replace(TagFieldLow,FieldName.ToLower());
                          
-                    string filename = $"{startPrefix}{ (useResNameToFile ? resName : "")}{FieldName}{endPrefix}.cs";
+                    string filename = $"{startPrefix}{ (useResNameToFile ? resName : "")}{FieldName}{endPrefix}{ext}";
                     File.WriteAllText(Path.Combine( path,filename), entity);
                 }
                 catch (Exception er)

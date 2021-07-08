@@ -320,6 +320,49 @@ namespace GeneratePage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to @page &quot;/catalog/&lt;!FieldName&gt;s&quot;
+        ///@attribute [Authorize(Policy = Permissions.&lt;FieldName&gt;s.View)]
+        ///@inject Microsoft.Extensions.Localization.IStringLocalizer&lt;&lt;FieldName&gt;s&gt; _localizer
+        ///@using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll
+        ///
+        ///&lt;style&gt;
+        ///    .mud-table-container {
+        ///        overflow: auto;
+        ///    }
+        ///&lt;/style&gt;
+        ///
+        ///&lt;HeroTitle Title=&quot;@_localizer[&quot;&lt;FieldName&gt;s&quot;]&quot; Description=&quot;@_localizer[&quot;Manage &lt;FieldName&gt;s.&quot;]&quot; /&gt;
+        ///@if (!_loaded)
+        ///{
+        ///    &lt;MudProgressCircular Color=&quot;Color.Prim [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string razor {
+            get {
+                return ResourceManager.GetString("razor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll;
+        ///using BlazorHero.CleanArchitecture.Client.Extensions;
+        ///using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+        ///using Microsoft.AspNetCore.Components;
+        ///using Microsoft.AspNetCore.SignalR.Client;
+        ///using MudBlazor;
+        ///using System;
+        ///using System.Collections.Generic;
+        ///using System.Linq;
+        ///using System.Security.Claims;
+        ///using System.Threading.Tasks;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Co [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string razor_cs {
+            get {
+                return ResourceManager.GetString("razor.cs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
         ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
         ///

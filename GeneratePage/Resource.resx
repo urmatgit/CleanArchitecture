@@ -157,6 +157,12 @@
   <data name="Profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\profile.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="razor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\razor.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="razor.cs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\razor.cs.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="Repository" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\repository.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
