@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Templates\AddEdit.razor.txt">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
     <None Update="Templates\razor.txt">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </None>

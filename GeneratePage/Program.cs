@@ -8,7 +8,7 @@ namespace GeneratePage
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Generate generator = new Generate("TestType");
+            Generate generator = new Generate("GameType");
             Console.WriteLine("Domain: "+ generator.Domain());
             Console.WriteLine("Xyz in Features: " + generator.Application());
             Console.ReadLine();
@@ -34,7 +34,7 @@ namespace GeneratePage
             {
                 get
                 {
-                    return $"{FieldName }s";
+                    return $"{FieldName}s";
                 }
             }
             public bool Application()
@@ -72,6 +72,10 @@ namespace GeneratePage
                     WriteFile(subfullPath, "Get", "ByIdQuery");
                     WriteFile(subfullPath, "Get", "Response", otherResname: "GetResponse");
 
+                    // FilterSpecification
+                    //E:\Git\Last\CleanArchitecture\src\Application\Specifications\Catalog
+                    fullPath = Path.Combine(MainPath, appPath, @"Specifications\Catalog");
+                    WriteFile(fullPath, "FilterSpecification",useResNameToFile: false,endPrefix: "FilterSpecification");
                     //Mapping
                     fullPath = Path.Combine(MainPath, appPath, "Mappings");
                     CreateDir(fullPath);
@@ -118,15 +122,15 @@ namespace GeneratePage
                     //E:\Git\Last\CleanArchitecture\src\Client\Shared\NavMenu.razor
                     fullPath = Path.Combine(MainPath, @"Client\Shared\NavMenu.razor");
                     //TODO Add _canViewProperty
-                    AddLineToFile(fullPath, "//TODO Add _canViewProperty", $"private bool _canView{FieldName}s;");
+                    AddLineToFile(fullPath, "//TODO Add _canProperty", $"private bool _canView{FieldName}s;");
                     
                     AddLineToFile(fullPath, "//TODO Add _canView", $"_canView{FieldName}s = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.{FieldName}s.View)).Succeeded;");
 
                     //@*//TODO add to menu*@
                     AddLineToFile(fullPath, "@*//TODO add to menu*@",
-                       $"@if(_canViewUser{FieldName}s) \n" +"{"+
-                       $"\n <MudNavLink Href = \"/catalog/user{ FieldName.ToLower()}s\" Icon = \"@Icons.Material.Outlined.CallToAction\">" +
-                       $"@_localizer[\"User {FieldName.ToLower()}s\"] \n </ MudNavLink>"+"\n}");
+                       $"@if(_canView{FieldName}s) \n" +"{"+
+                       $"\n <MudNavLink Href = \"/catalog/{ FieldName.ToLower()}s\" Icon = \"@Icons.Material.Outlined.CallToAction\">" +
+                       $"@_localizer[\"User {FieldName.ToLower()}s\"] \n </MudNavLink>"+"\n}");
 
                     //Client
                     //E:\Git\Last\CleanArchitecture\src\Client\Pages\Catalog
@@ -135,9 +139,13 @@ namespace GeneratePage
                     WriteFile(fullPath, "razor", useResNameToFile: false, endPrefix: "s",ext: ".razor");
                     WriteFile(fullPath, "razor.cs", useResNameToFile: false, endPrefix: "s", ext: ".razor.cs");
 
-                //@*//TODO add import*@
-                //E:\Git\Last\CleanArchitecture\src\Client\_Imports.razor
-                fullPath = Path.Combine(MainPath, @"Client\_Imports.razor");
+                    //AddEdit_razor
+                    WriteFile(fullPath, "AddEdit_razor", useResNameToFile: false,startPrefix: "AddEdit",  endPrefix: "Modal", ext: ".razor");
+                    WriteFile(fullPath, "AddEdit_cs", useResNameToFile: false, startPrefix: "AddEdit",endPrefix: "Model", ext: ".razor.cs");
+
+                    //@*//TODO add import*@
+                    //E:\Git\Last\CleanArchitecture\src\Client\_Imports.razor
+                    fullPath = Path.Combine(MainPath, @"Client\_Imports.razor");
                     AddLineToFile(fullPath, "@*//TODO add import*@", $"@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.{FieldName};");
 
 

@@ -15,7 +15,7 @@ using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.JSInterop;
 
-namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog
+namespace BlazorHero.CleanArchitecture.Client.Pages.Catalog.<FieldName>
 {
     public partial class <FieldName>s
     {
