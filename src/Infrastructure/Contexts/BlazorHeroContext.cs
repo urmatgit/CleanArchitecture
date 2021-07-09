@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
 using BlazorHero.CleanArchitecture.Application.Models.Chat;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
@@ -37,6 +37,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<Interest> Interests { get; set; }
 
         //TODO add entities
+DbSet<GameType> GameTypes { get;set; }
+
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
         {

@@ -9,6 +9,7 @@ namespace BlazorHero.CleanArchitecture.Domain.Contracts
    public class BaseEntity: AuditableEntity<int>
     {
         public string Name { get; set; }
-        public string Decription { get; set; }
+        public string Description { get; set; }
+                      
     }
 }

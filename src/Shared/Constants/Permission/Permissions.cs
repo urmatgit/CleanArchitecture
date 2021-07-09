@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -131,6 +131,17 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Do = "Permissions.Fill.Do";
         }
         //TODO Add permissions
+public static class GameTypes
+        {
+            public const string View = "Permissions.GameTypes.View";
+            public const string Create = "Permissions.GameTypes.Create";
+            public const string Edit = "Permissions.GameTypes.Edit";
+            public const string Delete = "Permissions.GameTypes.Delete";
+            public const string Export = "Permissions.GameTypes.Export";
+            public const string Search = "Permissions.GameTypes.Search";
+        }
+
+
         /// <summary>
         /// Returns a list of Permissions.
         /// </summary>
