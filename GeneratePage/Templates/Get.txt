@@ -13,12 +13,12 @@ namespace BlazorHero.CleanArchitecture.Application.Features.<FieldName>s.Queries
         public int Id { get; set; }
     }
 
-    internal class GetProductByIdQueryHandler : IRequestHandler<Get<FieldName>ByIdQuery, Result<Get<FieldName>ByIdResponse>>
+    internal class Get<FieldName>ByIdQueryHandler : IRequestHandler<Get<FieldName>ByIdQuery, Result<Get<FieldName>ByIdResponse>>
     {
         private readonly IUnitOfWork<int> _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetProductByIdQueryHandler(IUnitOfWork<int> unitOfWork, IMapper mapper)
+        public Get<FieldName>ByIdQueryHandler(IUnitOfWork<int> unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

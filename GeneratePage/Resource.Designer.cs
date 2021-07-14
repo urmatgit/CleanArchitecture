@@ -81,6 +81,61 @@ namespace GeneratePage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Client.Extensions;
+        ///using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+        ///using Microsoft.AspNetCore.Components;
+        ///using Microsoft.AspNetCore.SignalR.Client;
+        ///using MudBlazor;
+        ///using System.Threading.Tasks;
+        ///using Blazored.FluentValidation;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Commands.AddEdit;
+        ///using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.&lt;FieldName&gt;;
+        ///
+        ///namespace BlazorHero.CleanArchitecture.Client. [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AddEdit_cs {
+            get {
+                return ResourceManager.GetString("AddEdit_cs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @inject Microsoft.Extensions.Localization.IStringLocalizer&lt;AddEdit&lt;FieldName&gt;Modal&gt; _localizer
+        ///
+        ///&lt;EditForm Model=&quot;@AddEdit&lt;FieldName&gt;Model&quot; OnValidSubmit=&quot;SaveAsync&quot;&gt;
+        ///    &lt;FluentValidationValidator @ref=&quot;_fluentValidationValidator&quot; /&gt;
+        ///    &lt;MudDialog&gt;
+        ///        &lt;TitleContent&gt;
+        ///            @{
+        ///                if (AddEdit&lt;FieldName&gt;Model.Id == 0)
+        ///                {
+        ///                    &lt;MudText Typo=&quot;Typo.h6&quot;&gt;
+        ///                        &lt;MudIcon Icon=&quot;@Icons.Material.Filled.Add&quot; Class=&quot;mr-3 mb-n1&quot; /&gt;
+        ///         [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AddEdit_razor {
+            get {
+                return ResourceManager.GetString("AddEdit_razor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetById;
+        ///using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
+        ///using Microsoft.AspNetCore.Authorization;
+        ///using Microsoft.AspNetCore.Mvc;
+        ///using System.Threading.Tasks;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Commands.AddEdit;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Commands.D [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Controller {
+            get {
+                return ResourceManager.GetString("Controller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
         ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
         ///using BlazorHero.CleanArchitecture.Shared.Wrapper;
@@ -126,6 +181,28 @@ namespace GeneratePage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to namespace BlazorHero.CleanArchitecture.Client.Infrastructure.Routes
+        ///{
+        ///    public static class &lt;FieldName&gt;sEndpoints
+        ///    {
+        ///        public static string ExportFiltered(string searchString)
+        ///        {
+        ///            return $&quot;{Export}?searchString={searchString}&quot;;
+        ///        }
+        ///
+        ///        public static string Export = &quot;api/v1/&lt;!FieldName&gt;s/export&quot;;
+        ///
+        ///        public static string GetAll = &quot;api/v1/&lt;!FieldName&gt;s&quot;;
+        ///        public static string Delete = &quot;api/v1/&lt;!FieldName&gt;s&quot;;
+        ///        public static string Save = &quot; [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Endpoints {
+            get {
+                return ResourceManager.GetString("Endpoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to using System;
         ///using System.Collections.Generic;
         ///using System.Threading;
@@ -142,6 +219,26 @@ namespace GeneratePage {
         internal static string Export {
             get {
                 return ResourceManager.GetString("Export", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Specifications.Base;
+        ///using BlazorHero.CleanArchitecture.Domain.Entities.Catalog;
+        ///
+        ///namespace BlazorHero.CleanArchitecture.Application.Specifications.Catalog
+        ///{
+        ///    public class &lt;FieldName&gt;FilterSpecification : HeroSpecification&lt;&lt;FieldName&gt;&gt;
+        ///    {
+        ///        public &lt;FieldName&gt;FilterSpecification(string searchString)
+        ///        {
+        ///            if (!string.IsNullOrEmpty(searchString))
+        ///            {
+        ///                Criteria = p =&gt; p.Name.Contains(searchString) ||  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string FilterSpecification {
+            get {
+                return ResourceManager.GetString("FilterSpecification", resourceCulture);
             }
         }
         
@@ -316,6 +413,49 @@ namespace GeneratePage {
         internal static string Profile {
             get {
                 return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @page &quot;/catalog/&lt;!FieldName&gt;s&quot;
+        ///@attribute [Authorize(Policy = Permissions.&lt;FieldName&gt;s.View)]
+        ///@inject Microsoft.Extensions.Localization.IStringLocalizer&lt;&lt;FieldName&gt;s&gt; _localizer
+        ///@using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll
+        ///
+        ///&lt;style&gt;
+        ///    .mud-table-container {
+        ///        overflow: auto;
+        ///    }
+        ///&lt;/style&gt;
+        ///
+        ///&lt;HeroTitle Title=&quot;@_localizer[&quot;&lt;FieldName&gt;s&quot;]&quot; Description=&quot;@_localizer[&quot;Manage &lt;FieldName&gt;s.&quot;]&quot; /&gt;
+        ///@if (!_loaded)
+        ///{
+        ///    &lt;MudProgressCircular Color=&quot;Color.Prim [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string razor {
+            get {
+                return ResourceManager.GetString("razor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Queries.GetAll;
+        ///using BlazorHero.CleanArchitecture.Client.Extensions;
+        ///using BlazorHero.CleanArchitecture.Shared.Constants.Application;
+        ///using Microsoft.AspNetCore.Components;
+        ///using Microsoft.AspNetCore.SignalR.Client;
+        ///using MudBlazor;
+        ///using System;
+        ///using System.Collections.Generic;
+        ///using System.Linq;
+        ///using System.Security.Claims;
+        ///using System.Threading.Tasks;
+        ///using BlazorHero.CleanArchitecture.Application.Features.&lt;FieldName&gt;s.Co [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string razor_cs {
+            get {
+                return ResourceManager.GetString("razor.cs", resourceCulture);
             }
         }
         

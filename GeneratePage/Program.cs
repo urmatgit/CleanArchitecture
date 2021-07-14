@@ -8,14 +8,14 @@ namespace GeneratePage
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Generate generator = new Generate("TestType");
+            Generate generator = new Generate("GameType");
             Console.WriteLine("Domain: "+ generator.Domain());
             Console.WriteLine("Xyz in Features: " + generator.Application());
             Console.ReadLine();
         }
         class Generate
         {
-            const string MainPath = @"C:\Git\Last\CleanArchitecture\src\";
+            const string MainPath = @"E:\Git\Last\CleanArchitecture\src\";
             const string TagField = "<FieldName>";
             const string TagFieldLow = "<!FieldName>";
             string FieldName { get; set; }
@@ -34,7 +34,7 @@ namespace GeneratePage
             {
                 get
                 {
-                    return $"{FieldName }s";
+                    return $"{FieldName}s";
                 }
             }
             public bool Application()
@@ -72,13 +72,19 @@ namespace GeneratePage
                     WriteFile(subfullPath, "Get", "ByIdQuery");
                     WriteFile(subfullPath, "Get", "Response", otherResname: "GetResponse");
 
+                    // FilterSpecification
+                    //E:\Git\Last\CleanArchitecture\src\Application\Specifications\Catalog
+                    fullPath = Path.Combine(MainPath, appPath, @"Specifications\Catalog");
+                    WriteFile(fullPath, "FilterSpecification",useResNameToFile: false,endPrefix: "FilterSpecification");
                     //Mapping
                     fullPath = Path.Combine(MainPath, appPath, "Mappings");
+                    CreateDir(fullPath);
                     WriteFile(fullPath, "Profile",useResNameToFile: false,endPrefix: "Profile");
 
                     // Server
                     //Controller
-                      fullPath = Path.Combine(MainPath, @"Server\Controllers\v1\Catalog");
+                    //E:\Git\Last\CleanArchitecture\src\Server\Controllers\v1\Catalog
+                    fullPath = Path.Combine(MainPath, @"Server\Controllers\v1\Catalog");
                     WriteFile(fullPath, "Controller", useResNameToFile: false, endPrefix: "sController");
 
                     //Add Entity Class in DbContext
@@ -98,8 +104,8 @@ namespace GeneratePage
                     
                     // Add Cache key
                     //E:\Git\Last\CleanArchitecture\src\Shared\Constants\Application\ApplicationConstants.cs
-                    fullPath = Path.Combine(MainPath, @"Infrastructure\Contexts", "BlazorHeroContext.cs");
-                    AddLineToFile(fullPath, "//TODO Add cache key", $"public const string GetAll{FieldName}sCacheKey = \"all - {FieldName.ToLower()}s\";");
+                    fullPath = Path.Combine(MainPath, @"Shared\Constants\Application\ApplicationConstants.cs");
+                    AddLineToFile(fullPath, "//TODO Add cache key", $"public const string GetAll{FieldName}sCacheKey = \"all-{FieldName.ToLower()}s\";");
 
                 //Client.Infrastructure
                 //(Add Folder XyzManager in Manager Folder)
@@ -116,15 +122,33 @@ namespace GeneratePage
                     //E:\Git\Last\CleanArchitecture\src\Client\Shared\NavMenu.razor
                     fullPath = Path.Combine(MainPath, @"Client\Shared\NavMenu.razor");
                     //TODO Add _canViewProperty
-                    AddLineToFile(fullPath, "//TODO Add _canViewProperty", $"private bool _canView{FieldName}s;");
+                    AddLineToFile(fullPath, "//TODO Add _canProperty", $"private bool _canView{FieldName}s;");
                     
                     AddLineToFile(fullPath, "//TODO Add _canView", $"_canView{FieldName}s = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.{FieldName}s.View)).Succeeded;");
 
                     //@*//TODO add to menu*@
                     AddLineToFile(fullPath, "@*//TODO add to menu*@",
-                       $"@if(_canViewUser{FieldName}s) \n" +"{"+
-                       $"\n <MudNavLink Href = \"/catalog/user{ FieldName.ToLower()}s\" Icon = \"@Icons.Material.Outlined.CallToAction\">" +
-                       $"@_localizer[\"User {FieldName.ToLower()}s\"] \n </ MudNavLink>"+"}");
+                       $"@if(_canView{FieldName}s) \n" +"{"+
+                       $"\n <MudNavLink Href = \"/catalog/{ FieldName.ToLower()}s\" Icon = \"@Icons.Material.Outlined.CallToAction\">" +
+                       $"@_localizer[\"User {FieldName.ToLower()}s\"] \n </MudNavLink>"+"\n}");
+
+                    //Client
+                    //E:\Git\Last\CleanArchitecture\src\Client\Pages\Catalog
+                    fullPath = Path.Combine(MainPath, @"Client\Pages\Catalog");
+                    fullPath= CreateDir(fullPath, FieldName);
+                    WriteFile(fullPath, "razor", useResNameToFile: false, endPrefix: "s",ext: ".razor");
+                    WriteFile(fullPath, "razor.cs", useResNameToFile: false, endPrefix: "s", ext: ".razor.cs");
+
+                    //AddEdit_razor
+                    WriteFile(fullPath, "AddEdit_razor", useResNameToFile: false,startPrefix: "AddEdit",  endPrefix: "Modal", ext: ".razor");
+                    WriteFile(fullPath, "AddEdit_cs", useResNameToFile: false, startPrefix: "AddEdit",endPrefix: "Model", ext: ".razor.cs");
+
+                    //@*//TODO add import*@
+                    //E:\Git\Last\CleanArchitecture\src\Client\_Imports.razor
+                    fullPath = Path.Combine(MainPath, @"Client\_Imports.razor");
+                    AddLineToFile(fullPath, "@*//TODO add import*@", $"@using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.Catalog.{FieldName};");
+
+
                 }
                 catch (Exception er)
                 {
@@ -154,20 +178,23 @@ namespace GeneratePage
                     int index = body.IndexOf(afterLine);
                     if (index > 0)
                     {
-                        body.Insert(index + afterLine.Length,$"{System.Environment.NewLine}{newLine}{System.Environment.NewLine}");
+                       body= body.Insert(index + afterLine.Length,$"{System.Environment.NewLine}{newLine}{System.Environment.NewLine}");
 
                         File.WriteAllText(path, body);
+                        Console.WriteLine($"Add line {afterLine} completed");
                     }
+
                 }
                 catch (Exception er)
                 {
                     Result = false;
-                    Console.WriteLine(er.Message);
+                    Console.WriteLine($"Add line {afterLine} errror {er.Message} ");
+                    
                 }
                 return Result;
             }
             /// <summary>
-            ///  create file {path}\{startPrefix}{resName}{FieldName}{endPrefix}.cs
+            ///  create file {path}\{startPrefix}{resName}{FieldName}{endPrefix}{ext}
             /// </summary>
             /// <param name="path"></param>
             /// <param name="resName"></param>
@@ -175,7 +202,7 @@ namespace GeneratePage
             /// <param name="startPrefix"></param>
             /// <param name="useResNameToFile"></param>
             /// <returns></returns>
-            private bool WriteFile(string path,string resName,string endPrefix="",string startPrefix="", bool useResNameToFile=true,string otherResname="")
+            private bool WriteFile(string path,string resName,string endPrefix="",string startPrefix="", bool useResNameToFile=true,string otherResname="",string ext=".cs")
             {
                 bool Result = true;
                 try
@@ -184,13 +211,14 @@ namespace GeneratePage
                         .Replace(TagField, FieldName)
                         .Replace(TagFieldLow,FieldName.ToLower());
                          
-                    string filename = $"{startPrefix}{ (useResNameToFile ? resName : "")}{FieldName}{endPrefix}.cs";
+                    string filename = $"{startPrefix}{ (useResNameToFile ? resName : "")}{FieldName}{endPrefix}{ext}";
                     File.WriteAllText(Path.Combine( path,filename), entity);
+                    Console.WriteLine($"{resName} completed");
                 }
                 catch (Exception er)
                 {
                     Result = false;
-                    Console.WriteLine(er.Message);
+                    Console.WriteLine($"{resName} err {er.Message} ");
                 }
                 return Result;
             }

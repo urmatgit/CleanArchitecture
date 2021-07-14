@@ -1,4 +1,4 @@
-﻿namespace BlazorHero.CleanArchitecture.Shared.Constants.Application
+namespace BlazorHero.CleanArchitecture.Shared.Constants.Application
 {
     public static class ApplicationConstants
     {
@@ -27,6 +27,8 @@
             public const string GetAllInterestsCacheKey = "all-interests";
             public const string GetAllDocumentTypesCacheKey = "all-document-types";
             //TODO Add cache key
+public const string GetAllGameTypesCacheKey = "all-gametypes";
+
 
             public static string GetAllEntityExtendedAttributesCacheKey(string entityFullName)
             {

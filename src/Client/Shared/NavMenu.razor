@@ -1,4 +1,4 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> _localizer
+@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> _localizer
 @using System.Security.Claims
 
 <UserCard />
@@ -95,6 +95,12 @@
 
     }
     @*//TODO add to menu*@
+@if(_canViewGameTypes) 
+{
+ <MudNavLink Href = "/catalog/gametypes" Icon = "@Icons.Material.Outlined.CallToAction">@_localizer["User gametypes"] 
+ </MudNavLink>
+}
+
     @if (_canViewUserInterests)
     {
     <MudNavLink Href="/catalog/userinterests" Icon="@Icons.Material.Outlined.CallToAction">
@@ -127,7 +133,9 @@
     private bool _canViewUserInterests;
 
     private bool _canFillData;
-    //TODO Add _canViewProperty
+    //TODO Add _canProperty
+private bool _canViewGameTypes;
+
 
     protected override async Task OnParametersSetAsync()
     {
@@ -148,5 +156,7 @@
         _canViewUserInterests = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.UserInterests.View)).Succeeded;
 
         //TODO Add _canView
+_canViewGameTypes = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.GameTypes.View)).Succeeded;
+
     }
 }

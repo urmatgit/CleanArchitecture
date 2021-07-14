@@ -121,14 +121,29 @@
   <data name="AddEdit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\addedit.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="AddEdit_cs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\addedit.cs.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="AddEdit_razor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\addedit.razor.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\controller.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\delete.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DomainEntity" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\domainentity.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="Endpoints" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\endpoints.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="Export" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\export.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="FilterSpecification" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\filterspecification.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Get" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\get.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -156,6 +171,12 @@
   </data>
   <data name="Profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\profile.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="razor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\razor.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="razor.cs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>templates\razor.cs.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="Repository" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>templates\repository.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
