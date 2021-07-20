@@ -1,0 +1,53 @@
+@inject Microsoft.Extensions.Localization.IStringLocalizer<AddEditGameModal> _localizer
+
+<EditForm Model="@AddEditGameModel" OnValidSubmit="SaveAsync">
+    <FluentValidationValidator @ref="_fluentValidationValidator" />
+    <MudDialog>
+        <TitleContent>
+            @{
+                if (AddEditGameModel.Id == 0)
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
+                        @_localizer["Add Game"]
+                    </MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.h6">
+                        <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
+                        @_localizer["Update Game"]
+                    </MudText>
+                }
+            }
+        </TitleContent>
+        <DialogContent>
+            <MudGrid>
+                @if (AddEditGameModel.Id != 0)
+                {
+                    <MudItem xs="12" md="6">
+                        <MudTextField Disabled For="@(() => AddEditGameModel.Id)" @bind-Value="AddEditGameModel.Id" Label="@_localizer["Id"]" />
+                    </MudItem>
+                }
+                <MudItem xs="12" md="6">
+                    <MudTextField T="string" For="@(() => AddEditGameModel.Name)" @bind-Value="AddEditGameModel.Name" Label="@_localizer["Name"]" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudTextField For="@(() => AddEditGameModel.Description)" @bind-Value="AddEditGameModel.Description" Label="@_localizer["Description"]" />
+                </MudItem>
+                
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton DisableElevation Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            @if (AddEditGameModel.Id != 0)
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update"]</MudButton>
+            }
+            else
+            {
+                <MudButton DisableElevation Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save"]</MudButton>
+            }
+        </DialogActions>
+    </MudDialog>
+</EditForm>

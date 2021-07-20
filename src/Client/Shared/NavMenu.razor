@@ -95,6 +95,12 @@
 
     }
     @*//TODO add to menu*@
+@if(_canViewGames) 
+{
+ <MudNavLink Href = "/catalog/games" Icon = "@Icons.Material.Outlined.CallToAction">@_localizer["User games"] 
+ </MudNavLink>
+}
+
 @if(_canViewGameTypes) 
 {
  <MudNavLink Href = "/catalog/gametypes" Icon = "@Icons.Material.Outlined.CallToAction">@_localizer["User gametypes"] 
@@ -134,6 +140,8 @@
 
     private bool _canFillData;
     //TODO Add _canProperty
+private bool _canViewGames;
+
 private bool _canViewGameTypes;
 
 
@@ -156,6 +164,8 @@ private bool _canViewGameTypes;
         _canViewUserInterests = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.UserInterests.View)).Succeeded;
 
         //TODO Add _canView
+_canViewGames = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Games.View)).Succeeded;
+
 _canViewGameTypes = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.GameTypes.View)).Succeeded;
 
     }

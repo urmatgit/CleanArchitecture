@@ -37,6 +37,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Contexts
         public DbSet<Interest> Interests { get; set; }
 
         //TODO add entities
+DbSet<Game> Games { get;set; }
+
 DbSet<GameType> GameTypes { get;set; }
 
 

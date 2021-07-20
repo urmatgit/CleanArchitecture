@@ -27,6 +27,8 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Application
             public const string GetAllInterestsCacheKey = "all-interests";
             public const string GetAllDocumentTypesCacheKey = "all-document-types";
             //TODO Add cache key
+public const string GetAllGamesCacheKey = "all-games";
+
 public const string GetAllGameTypesCacheKey = "all-gametypes";
 
 

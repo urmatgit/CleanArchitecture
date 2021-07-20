@@ -1,4 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Domain.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +7,14 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Domain.Entities.Catalog
 {
+    /// <summary>
+    /// Game, Workout,GameTraining,
+    /// </summary>
     public class Game : BaseEntity
     {
         public bool Archive { get; set; }
         public bool Publish { get; set; }
-        
+
         public ushort PlayerCount { get; set; }
 
         public string UserId { get; set; }
@@ -19,6 +22,5 @@ namespace BlazorHero.CleanArchitecture.Domain.Entities.Catalog
         public virtual Interest Interest { get; set; }
         public int GameTypeId { get; set; }
         public virtual GameType GameType { get; set; }
-
     }
 }

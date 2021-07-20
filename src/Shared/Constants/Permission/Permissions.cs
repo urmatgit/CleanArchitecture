@@ -132,6 +132,17 @@ namespace BlazorHero.CleanArchitecture.Shared.Constants.Permission
             public const string Do = "Permissions.Fill.Do";
         }
         //TODO Add permissions
+public static class Games
+        {
+            public const string View = "Permissions.Games.View";
+            public const string Create = "Permissions.Games.Create";
+            public const string Edit = "Permissions.Games.Edit";
+            public const string Delete = "Permissions.Games.Delete";
+            public const string Export = "Permissions.Games.Export";
+            public const string Search = "Permissions.Games.Search";
+        }
+
+
 public static class GameTypes
         {
             public const string View = "Permissions.GameTypes.View";

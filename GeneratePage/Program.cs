@@ -8,7 +8,7 @@ namespace GeneratePage
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Generate generator = new Generate("GameType");
+            Generate generator = new Generate("Game");
             Console.WriteLine("Domain: "+ generator.Domain());
             Console.WriteLine("Xyz in Features: " + generator.Application());
             Console.ReadLine();
